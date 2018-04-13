@@ -3,6 +3,7 @@ package com.l360.SBG360.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import com.l360.SBG360.dao.StudentDAO;
 public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
+	@Qualifier(value="studentDAOHibernateImpl")
 	private StudentDAO studentDAO;
 
 	@Override
