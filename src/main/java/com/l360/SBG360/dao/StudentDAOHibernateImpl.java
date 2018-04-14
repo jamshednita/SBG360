@@ -12,13 +12,13 @@ import org.springframework.stereotype.Repository;
 
 import com.l360.SBG360.bo.Student;
 @Repository
-public class StudentDAOHibernateImpl implements StudentDAO {
+public class StudentDAOHibernateImpl implements BaseDAO<Student> {
 
 	@Autowired
 	private EntityManager entityManager;
 
 	@Override
-	public Student getStudentById(Integer id) {
+	public Student getById(Integer id) {
 		/*System.out.println("Inside StudentDAOHibernateImpl");
 		if(entityManager.unwrap(Session.class) !=null) {
 			System.out.println("entityManager contains hibernate session");
@@ -35,7 +35,7 @@ public class StudentDAOHibernateImpl implements StudentDAO {
 	}
 
 	@Override
-	public List<Student> getStudents(Integer limit) {
+	public List<Student> getAll(Integer limit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -47,7 +47,7 @@ public class StudentDAOHibernateImpl implements StudentDAO {
 
 	@Override
 	public void update(Student student) {
-		// TODO Auto-generated method stub
+		entityManager.merge(student);
 
 	}
 

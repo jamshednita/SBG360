@@ -10,19 +10,18 @@ import org.springframework.stereotype.Repository;
 import com.l360.SBG360.bo.Student;
 
 @Repository
-public class StudentDAOImpl implements StudentDAO {
+public class StudentDAOImpl implements BaseDAO<Student> {
 	@PersistenceContext
 	private EntityManager entityManager;
 
 	@Override
-	public Student getStudentById(Integer id) {
+	public Student getById(Integer id) {
 		Student student = entityManager.find(Student.class, id);
-		
 		return student;
 	}
 
 	@Override
-	public List<Student> getStudents(Integer limit) {
+	public List<Student> getAll(Integer limit) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -35,14 +34,13 @@ public class StudentDAOImpl implements StudentDAO {
 
 	@Override
 	public void update(Student student) {
-		// TODO Auto-generated method stub
+		entityManager.merge(student);
 
 	}
 
 	@Override
 	public void delete(Student student) {
-		// TODO Auto-generated method stub
-
+		entityManager.remove(student);;
 	}
 
 }
